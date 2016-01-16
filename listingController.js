@@ -22,23 +22,35 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       var buildingName = $scope.buildingName;
       var buildingAddr = $scope.buildingAddress;
 
+      var buildingLong = $scope.buildingLong;
+      var buildingLat = $scope.buildingLat;
+
       $scope.listings.push(
         { code : buildingCode,
           name : buildingName,
-          address : buildingAddr
+          address : buildingAddr,
+          coordinates :
+          {
+            longitude : buildingLong,
+            latitude  : buildingLat
+          }
         }
       );
 
       $scope.buildingName = '';
       $scope.buildingCode = '';
       $scope.buildingAddress = '';
+
+      $scope.buildingLong = '';
+      $scope.buildingLat = '';
     };
 
-    $scope.deleteListing = function(index) {
+    $scope.deleteListing = function(element) {
+      var index = $scope.listings.indexOf(element);
       $scope.listings.splice(index,1);
     };
-    $scope.showDetails = function(index) {
-      var item = $scope.listings[index];
+    $scope.showDetails = function(element) {
+      var item = element;
 
       var address = item.address;
       var longitude = item.coordinates.longitude;

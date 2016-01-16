@@ -31,8 +31,8 @@
                 <tr ng-repeat="element in listings | orderBy:'code' | filter:nameSearch">
                   <td>{{element.code}}</td>
                   <td>{{element.name}}</td>
-                  <td><input class = "btn btn-default" type="submit" value="Show Details" ng-click="showDetails($index)"/>
-                  <td><input class = "btn btn-warning" type="submit" value="Remove this" ng-click="deleteListing($index)"/></td>
+                  <td><input class = "btn btn-default" type="submit" value="Show Details" ng-click="showDetails(element)"/>
+                  <td><input class = "btn btn-warning" type="submit" value="Remove this" ng-click="deleteListing(element)"/></td>
                 </tr>
               </tr>
               <!--
@@ -61,17 +61,18 @@
 
              -->
           </div>
-
-          <div>
-            <h4 ng-model="long">Longitude: {{long}} </h4>
-            <h4 ng-model="lat">Latitude: {{lat}}</h4>
-            <h4 ng-model="addr">Address: {{addr}}</h4>
+          <div class = "container">
+            <div>
+              <h4 ng-model="long">Longitude: {{long}} </h4>
+              <h4 ng-model="lat">Latitude: {{lat}}</h4>
+              <h4 ng-model="addr"> Address: <a target="_blank" href="https://www.google.com/maps/place/{{addr}}"> {{addr}} </a> </h4>
+            </div>
           </div>
-
         </div>
+
         <section class = "col-md-12">
           <h3>Add a building!</h3>
-          <form novalidate class="form-inline" role ="forms">
+          <form novalidate class="form-inline container" role ="forms">
             <div class = "form-group">
               <label for="bc">Building Code:</label>
               <input type="text" class = "form-control" ng-model="buildingCode" id="bc" required/><br>
@@ -83,6 +84,14 @@
             <div class = "form-group">
               <label for="ba">Building Address:</label>
               <input type="text" class="form-control" ng-model="buildingAddress" id="ba" required/>
+            </div>
+            <div class = "form-group">
+              <label for="lo">Longitude:</label>
+              <input type="text" class="form-control" ng-model="buildingLong" id="lo" required/>
+            </div>
+            <div class = "form-group">
+              <label for="la">Latitude:</label>
+              <input type="text" class="form-control" ng-model="buildingLat" id="la" required/>
             </div>
             <input type="submit" value="Add Building" ng-click="addListing()" />
           </form>
