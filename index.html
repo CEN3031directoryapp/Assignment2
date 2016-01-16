@@ -9,6 +9,7 @@
       <div class="row">
         <h1>UF Directory App</h1>
       </div>
+
       <div class="row" ng-controller="ListingsController">
         <div class="col-md-6">
           <div class="input-group" id="searchBar">
@@ -27,11 +28,11 @@
                 <th>Building Name</th>
                 <th> </th>
                 <th> </th>
-                <tr ng-repeat="listing in listings | orderBy:'code' | filter:nameSearch">
-                  <td>{{listing.code}}</td>
-                  <td>{{listing.name}}</td>
-                  <td><input class = "btn btn-default" type="submit" value="Show Deets?" ng-click="showDetails($index)"/>
-                  <td><input class = "btn btn-warning" type="submit" value="Remove this?" ng-click="deleteListing($index)"/></td>
+                <tr ng-repeat="element in listings | orderBy:'code' | filter:nameSearch">
+                  <td>{{element.code}}</td>
+                  <td>{{element.name}}</td>
+                  <td><input class = "btn btn-default" type="submit" value="Show Details" ng-click="showDetails($index)"/>
+                  <td><input class = "btn btn-warning" type="submit" value="Remove this" ng-click="deleteListing($index)"/></td>
                 </tr>
               </tr>
               <!--
@@ -60,17 +61,35 @@
 
              -->
           </div>
+
+          <div>
+            <h4 ng-model="long">Longitude: {{long}} </h4>
+            <h4 ng-model="lat">Latitude: {{lat}}</h4>
+            <h4 ng-model="addr">Address: {{addr}}</h4>
+          </div>
+
         </div>
         <section class = "col-md-12">
           <h3>Add a building!</h3>
-          <form novalidate class="simple-form">
-            Building Code: <input type="text" ng-model="buildingCode" required/><br>
-            Building Name: <input type="text" ng-model="buildingName" required/> <br/>
-            Building Address: <input type="text" ng-model="buildingAddress" required/>
+          <form novalidate class="form-inline" role ="forms">
+            <div class = "form-group">
+              <label for="bc">Building Code:</label>
+              <input type="text" class = "form-control" ng-model="buildingCode" id="bc" required/><br>
+            </div>
+            <div class = "form-group">
+              <label  for="bn">Building Name:</label>
+              <input type="text" class = "form-control" ng-model="buildingName" id="bn" required/> <br/>
+            </div>
+            <div class = "form-group">
+              <label for="ba">Building Address:</label>
+              <input type="text" class="form-control" ng-model="buildingAddress" id="ba" required/>
+            </div>
             <input type="submit" value="Add Building" ng-click="addListing()" />
           </form>
         </section>
       </div>
+
+
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>

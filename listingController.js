@@ -22,7 +22,12 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       var buildingName = $scope.buildingName;
       var buildingAddr = $scope.buildingAddress;
 
-      $scope.listings.push({code : buildingCode, name : buildingName, address : buildingAddr});
+      $scope.listings.push(
+        { code : buildingCode,
+          name : buildingName,
+          address : buildingAddr
+        }
+      );
 
       $scope.buildingName = '';
       $scope.buildingCode = '';
@@ -33,7 +38,35 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       $scope.listings.splice(index,1);
     };
     $scope.showDetails = function(index) {
-      
+      var item = $scope.listings[index];
+
+      var address = item.address;
+      var longitude = item.coordinates.longitude;
+      var latitude = item.coordinates.latitude;
+
+      if(address != null)
+      {
+        $scope.addr = address;
+      }
+      else {
+        $scope.addr = "";
+      }
+
+      if(longitude != null)
+      {
+        $scope.long = longitude;
+      }
+      else{
+        $scope.long = "";
+      }
+
+      if(latitude != null)
+      {
+        $scope.lat = latitude;
+      }
+      else{
+        $scope.lat = "latitude";
+      }
     };
   }
 ]);
